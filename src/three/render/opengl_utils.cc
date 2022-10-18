@@ -1,10 +1,8 @@
 #include "three/render/opengl_utils.h"
 
 #include "three/assert.h"
-#include "three/log.h"
 
 #include "three/dependency_opengl.h"
-#include "three/dependency_sdl.h"
 
 
 namespace three

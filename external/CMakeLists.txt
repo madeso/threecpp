@@ -40,6 +40,26 @@ add_library(external::sdl2 ALIAS external_sdl2)
 
 
 ###################################################################################################
+# sokol
+add_library(external_sokol INTERFACE)
+target_include_directories(external_sokol SYSTEM
+    INTERFACE
+        sokol
+)
+
+if (LINUX)
+    message(STATUS "adding linux libs")
+    set(THREADS_PREFER_PTHREAD_FLAG ON)
+    find_package(Threads REQUIRED)
+    target_link_libraries(external_sokol
+        INTERFACE
+            X11 Xi Xcursor EGL GL asound dl m Threads::Threads
+    )
+    # set(system_libs ${system_libs} X11 Xi Xcursor GL asound dl m Threads::Threads)
+endif()
+add_library(external::sokol ALIAS external_sokol)
+
+###################################################################################################
 # OpenGL
 set(OpenGL_GL_PREFERENCE "GLVND")
 find_package(OpenGL REQUIRED)

@@ -5,18 +5,18 @@ set(src_input
 
 set(src_render
     three/render/camera.cc three/render/camera.h
+    three/render/opengl_utils.cc three/render/opengl_utils.h
 )
     
 set(src_base
     three/assert.cc three/assert.h
     three/colors.cc three/colors.h
-    three/dependency_glad.h
+    # three/dependency_glad.h
     three/dependency_glm.h three/dependency_glm.cc
     three/dependency_opengl.cc three/dependency_opengl.h
-    three/dependency_sdl.cc three/dependency_sdl.h
+    three/dependency_sokol.cc three/dependency_sokol.h
     three/result.cc three/result.h
     three/str.cc three/str.h
-    three/windows.sdl.convert.cc three/windows.sdl.convert.h
 
     three/three.cc three/three.h
 )
@@ -36,11 +36,11 @@ set(src
 add_library(three STATIC ${src})
 target_link_libraries(three
     PUBLIC
-        external::sdl2
-        external::opengl
+        external::sokol
+        # external::opengl
         stb::image
         external::glm
-        external::glad
+        # external::glad
     PRIVATE
         three::project_options
         three::project_warnings
